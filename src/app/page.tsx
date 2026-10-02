@@ -19,24 +19,24 @@ export default function Home() {
     <>
       {/* ---------- Hero ---------- */}
       <section className="paper filler relative overflow-hidden pt-28 sm:pt-36">
-        <Container className="relative text-center">
+        <Container className="relative grid grid-cols-1 items-center gap-6 pb-10 text-center lg:grid-cols-[1fr_1.05fr] lg:gap-4 lg:pb-16 lg:text-left">
           <Reveal>
             <p className="font-display text-xl text-sindoor" lang="hi">
               {site.taglineHindi}
             </p>
-            <h1 className="font-display mt-2 text-[3.4rem] leading-none text-kohl sm:text-8xl lg:text-[8.5rem]">
+            <h1 className="font-display mt-2 text-[3.4rem] leading-none text-kohl sm:text-8xl xl:text-[7.5rem]">
               <span className="text-sindoor">SWAD</span>UP
               <span className="mt-1 block text-[0.42em] tracking-[0.35em] text-kohl/85">FOODS</span>
             </h1>
             <p className="font-display mt-6 text-3xl text-leaf sm:text-4xl">{site.tagline}</p>
-            <p className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-base font-bold text-muted sm:text-lg">
+            <p className="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-x-3 lg:mx-0 lg:justify-start gap-y-1 text-base font-bold text-muted sm:text-lg">
               <span>Premium Makhana</span>
               <span className="text-sindoor">✦</span>
               <span>Carefully Selected</span>
               <span className="text-sindoor">✦</span>
               <span>Packed with Care</span>
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4">
+            <div className="mt-9 flex flex-wrap justify-center gap-4 lg:justify-start">
               <ButtonLink href="/journey" variant="secondary">
                 Discover Our Journey <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </ButtonLink>
@@ -47,10 +47,10 @@ export default function Home() {
           </Reveal>
 
           {/* painted stage with the 200g pack */}
-          <Reveal delay={0.15} className="relative mx-auto mt-14 h-[420px] max-w-4xl sm:h-[520px]">
+          <Reveal delay={0.15} className="relative mx-auto mt-8 h-[420px] w-full max-w-2xl sm:h-[520px] lg:mt-0 lg:h-[560px]">
             <Sun className="animate-spin-slow absolute top-0 left-1/2 w-[300px] -translate-x-1/2 opacity-95 sm:w-[400px]" />
-            <Peacock className="animate-sway absolute bottom-6 -left-24 w-56 origin-bottom sm:left-0 sm:w-80" />
-            <Peacock className="animate-sway absolute -right-24 bottom-6 w-56 origin-bottom -scale-x-100 sm:right-0 sm:w-80" />
+            <Peacock className="animate-sway absolute bottom-6 -left-24 w-56 origin-bottom sm:left-0 sm:w-72 lg:-left-4 lg:w-64" />
+            <Peacock className="animate-sway absolute -right-24 bottom-6 w-56 origin-bottom -scale-x-100 sm:right-0 sm:w-72 lg:-right-4 lg:w-64" />
             <Lotus className="absolute bottom-0 left-1/2 w-72 -translate-x-1/2 sm:w-96" />
             <div className="absolute bottom-16 left-1/2 w-[180px] -translate-x-1/2 drop-shadow-[8px_10px_0_rgba(27,20,16,0.85)] sm:bottom-20 sm:w-[230px]">
               <PackFront className="animate-float w-full" />
