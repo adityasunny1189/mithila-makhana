@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mithila Makhana
 
-## Getting Started
+Website for a Mithila makhana (fox nut) company that sources directly from farming villages in the Mithila region of Bihar and sells in bulk. It is designed to grow into a D2C snack brand.
 
-First, run the development server:
+Built with **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion**.
+
+## Pages
+
+| Route | What it is |
+| --- | --- |
+| `/` | Brand home: hero, makhana intro, grades, farm-to-pack, live teaser, bulk, snacks |
+| `/about-makhana` | Makhana 101: the plant, nutrition, Mithila culture & GI tag, ways to eat |
+| `/varieties` | Grades (Jumbo, Premium, Standard, Phool, raw Gurri, Atta), size guide, quality specs |
+| `/farming` | Pond vs field farming, crop calendar, the 10-step process, people & planet |
+| `/live` | YouTube live stream, broadcast schedule, stream library by process |
+| `/bulk` | B2B: how it works, packing options, quote form, FAQ |
+| `/snacks` | Coming-soon D2C snack range with a waitlist |
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # fill in what you need
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Business details** (email, phone, WhatsApp, address, socials): `src/lib/site.ts`
+- **Content** (grades, process steps, nutrition, stats, snacks, FAQs, stream categories): `src/lib/data.ts`
+  Stats marked `placeholder` and the quality specs are illustrative. Replace them with real figures.
+- **Brand colours & fonts**: `src/app/globals.css` and `src/app/layout.tsx`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Live streaming (YouTube)
 
-## Learn More
+1. Set `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` to your channel ID. The player embeds whatever the channel is broadcasting live.
+2. Optionally set `YOUTUBE_API_KEY` (YouTube Data API v3). `/live` then shows a "Live now" badge, the stream title and upcoming broadcasts. It re-checks every 2 minutes. The same status is available as JSON at `/api/live`.
+3. Add recorded videos to the stream library by setting `videoId` on each entry in `streamCategories` (`src/lib/data.ts`).
+4. Edit the weekly broadcast schedule in `src/app/live/page.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+Players use a click-to-load facade, so nothing loads from YouTube until a visitor presses play.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Enquiries
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The bulk quote form and snack waitlist post to `/api/enquiry`. Set `ENQUIRY_WEBHOOK_URL` to forward submissions to Zapier, Make, Slack, Google Sheets and similar. Without it, submissions are only logged on the server.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`npm run dev` · `npm run build` · `npm run start` · `npm run lint`
