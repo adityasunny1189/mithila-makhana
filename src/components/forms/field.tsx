@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 const base =
-  "w-full rounded-2xl border border-pond/15 bg-pearl px-4 py-3.5 text-ink placeholder:text-muted/60 outline-none transition focus:border-pond focus:ring-4 focus:ring-pond/10";
+  "w-full rounded-2xl border-2 border-kohl bg-pearl px-4 py-3.5 text-kohl placeholder:text-muted/60 outline-none transition focus:ring-4 focus:ring-haldi/60";
 
 type FieldProps = {
   label: string;
@@ -38,7 +38,7 @@ export function Field(props: FieldProps) {
   }
   return (
     <label htmlFor={name} className={clsx("block", className)}>
-      <span className="mb-2 block text-sm font-bold text-pond">
+      <span className="mb-2 block text-sm font-extrabold text-kohl">
         {label} {required && <span className="text-sindoor">*</span>}
       </span>
       {control}

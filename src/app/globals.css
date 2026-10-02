@@ -1,74 +1,65 @@
 @import "tailwindcss";
 
 /*
- * Brand tokens — inspired by the Mithila region:
- * lotus-pond greens, Madhubani vermilion, turmeric gold and the
- * warm cream of a freshly popped makhana.
+ * SwadUp Foods — Mithila (Madhubani) painting palette.
+ * Natural pigments on handmade paper: kohl black line work, sindoor red,
+ * haldi yellow, leaf green, indigo and pink, with makhana-pearl white.
  */
 :root {
-  --cream: #fbf6ec;
-  --cream-deep: #f3e9d4;
-  --pearl: #fffdf8;
-  --ink: #1d2a22;
-  --pond: #1f3d2b;
-  --pond-deep: #142a1d;
-  --leaf: #4f7a4a;
-  --sindoor: #c2412d;
-  --sindoor-deep: #9e2f1f;
-  --haldi: #e3a82b;
-  --husk: #6b4a2f;
-  --muted: #5d6a60;
+  --paper: #f6ecd6;
+  --paper-deep: #ecdbb5;
+  --pearl: #fffaf0;
+  --kohl: #1b1410;
+  --sindoor: #c8341f;
+  --sindoor-deep: #9b2414;
+  --haldi: #f0b323;
+  --leaf: #2f7a3a;
+  --leaf-deep: #1f5a2a;
+  --neel: #1f4d8f;
+  --gulabi: #d94f7c;
+  --earth: #7a4a24;
+  --muted: #5f4e3d;
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-cream-deep: var(--cream-deep);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
   --color-pearl: var(--pearl);
-  --color-ink: var(--ink);
-  --color-pond: var(--pond);
-  --color-pond-deep: var(--pond-deep);
-  --color-leaf: var(--leaf);
+  --color-kohl: var(--kohl);
   --color-sindoor: var(--sindoor);
   --color-sindoor-deep: var(--sindoor-deep);
   --color-haldi: var(--haldi);
-  --color-husk: var(--husk);
+  --color-leaf: var(--leaf);
+  --color-leaf-deep: var(--leaf-deep);
+  --color-neel: var(--neel);
+  --color-gulabi: var(--gulabi);
+  --color-earth: var(--earth);
   --color-muted: var(--muted);
 
   --font-sans: var(--font-manrope);
-  --font-display: var(--font-fraunces);
-  --font-deva: var(--font-tiro);
+  --font-display: var(--font-yatra);
 
-  --animate-marquee: marquee 40s linear infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
-  --animate-spin-slow: spin 60s linear infinite;
-  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+  --animate-spin-slow: spin 80s linear infinite;
+  --animate-sway: sway 5s ease-in-out infinite;
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
   @keyframes float {
     0%,
     100% {
-      transform: translateY(0) rotate(0deg);
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-14px) rotate(4deg);
+      transform: translateY(-12px);
     }
   }
-  @keyframes pulse-ring {
-    0% {
-      transform: scale(0.8);
-      opacity: 0.8;
-    }
+  @keyframes sway {
+    0%,
     100% {
-      transform: scale(2.2);
-      opacity: 0;
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
     }
   }
 }
@@ -79,37 +70,42 @@ html {
 
 body {
   overflow-x: clip;
-  background: var(--cream);
-  color: var(--ink);
+  background: var(--paper);
+  color: var(--kohl);
   font-family: var(--font-manrope), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
   background: var(--haldi);
-  color: var(--pond-deep);
+  color: var(--kohl);
 }
 
-/* Subtle paper grain used on cream sections */
-.grain {
+/* Handmade-paper grain */
+.paper {
   position: relative;
   isolation: isolate;
 }
-.grain::before {
+.paper::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.35;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.29 0 0 0 0 0.18 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0 0.15 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Madhubani-style double-line border with dotted fill */
-.madhubani-frame {
-  border: 2px solid currentColor;
-  outline: 2px solid currentColor;
-  outline-offset: 5px;
+/* Madhubani "filler" — small flowers and dots that fill empty space, as in the paintings */
+.filler {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%231b1410' stroke-width='1.2' opacity='0.18'%3E%3Ccircle cx='16' cy='16' r='3'/%3E%3Cpath d='M16 9v-3M16 23v3M9 16H6M23 16h3'/%3E%3C/g%3E%3Cg fill='%231b1410' opacity='0.16'%3E%3Ccircle cx='48' cy='48' r='1.6'/%3E%3Ccircle cx='42' cy='44' r='1'/%3E%3Ccircle cx='54' cy='44' r='1'/%3E%3Ccircle cx='48' cy='54' r='1'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Kohl double outline — the defining line of Mithila painting */
+.double-line {
+  border: 2.5px solid var(--kohl);
+  outline: 1.5px solid var(--kohl);
+  outline-offset: -8px;
 }
 
 .text-balance {

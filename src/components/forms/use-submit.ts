@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export type SubmitState = { status: "idle" | "sending" | "sent" | "error"; error?: string };
 
-export function useEnquirySubmit(type: "bulk" | "waitlist") {
+export function useContactSubmit() {
   const [state, setState] = useState<SubmitState>({ status: "idle" });
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -15,7 +15,7 @@ export function useEnquirySubmit(type: "bulk" | "waitlist") {
       const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, type }),
+        body: JSON.stringify(data),
       });
       const json = (await res.json()) as { ok: boolean; error?: string };
       if (!json.ok) throw new Error(json.error ?? "Something went wrong.");

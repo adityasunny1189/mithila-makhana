@@ -1,48 +1,63 @@
-# Mithila Makhana
+# SwadUp Foods — swadupfoods.com
 
-Website for a Mithila makhana (fox nut) company that sources directly from farming villages in the Mithila region of Bihar and sells in bulk. It is designed to grow into a D2C snack brand.
+Website for **SwadUp Foods**, a premium makhana brand bringing makhana from the farms of Mithila to your home.
+The whole site is designed in the **Mithila (Madhubani) painting** style: kohl double outlines, *kachni* hatching,
+bright natural pigments and traditional motifs (fish, peacock, sun, lotus).
 
 Built with **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion**.
 
 ## Pages
 
-| Route | What it is |
+| Route | Section |
 | --- | --- |
-| `/` | Brand home: hero, makhana intro, grades, farm-to-pack, live teaser, bulk, snacks |
-| `/about-makhana` | Makhana 101: the plant, nutrition, Mithila culture & GI tag, ways to eat |
-| `/varieties` | Grades (Jumbo, Premium, Standard, Phool, raw Gurri, Atta), size guide, quality specs |
-| `/farming` | Pond vs field farming, crop calendar, the 10-step process, people & planet |
-| `/live` | YouTube live stream, broadcast schedule, stream library by process |
-| `/bulk` | B2B: how it works, packing options, quote form, FAQ |
-| `/snacks` | Coming-soon D2C snack range with a waitlist |
+| `/` | Home — hero, 200g pack, "What Makes SwadUp Foods Different?", journey preview, QR callout, story teaser, where to buy |
+| `/journey` | **QR code destination** — Welcome, then Steps 1–6 (Farming → Packing) and Step 7 (Buy) |
+| `/story` | Our Story — "Why SwadUp Foods?" |
+| `/product` | Our Product — SwadUp Premium Makhana 200g, front/back/close-up, highlights, where to buy |
+| `/buy` | Buy Now — Meesho, Flipkart, Amazon (coming soon) |
+| `/contact` | Contact Us — details + contact form |
+
+The QR code printed on the pack should point to **`https://swadupfoods.com/journey`**.
+The back-of-pack illustration on the site contains a real, scannable QR code for that URL.
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in what you need
-npm run dev                  # http://localhost:3000
+cp .env.example .env.local
+npm run dev        # http://localhost:3000
 ```
 
-## Configuration
+## Where to edit things
 
-- **Business details** (email, phone, WhatsApp, address, socials): `src/lib/site.ts`
-- **Content** (grades, process steps, nutrition, stats, snacks, FAQs, stream categories): `src/lib/data.ts`
-  Stats marked `placeholder` and the quality specs are illustrative. Replace them with real figures.
-- **Brand colours & fonts**: `src/app/globals.css` and `src/app/layout.tsx`
+| What | File |
+| --- | --- |
+| Contact details, social links, marketplace links | `src/lib/site.ts` |
+| Journey steps, product details, story copy | `src/lib/content.ts` |
+| Colours & fonts | `src/app/globals.css`, `src/app/layout.tsx` |
+| Mithila motifs, borders, scenes, pack artwork | `src/components/mithila/` |
 
-### Live streaming (YouTube)
+### Adding real photos & videos
 
-1. Set `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` to your channel ID. The player embeds whatever the channel is broadcasting live.
-2. Optionally set `YOUTUBE_API_KEY` (YouTube Data API v3). `/live` then shows a "Live now" badge, the stream title and upcoming broadcasts. It re-checks every 2 minutes. The same status is available as JSON at `/api/live`.
-3. Add recorded videos to the stream library by setting `videoId` on each entry in `streamCategories` (`src/lib/data.ts`).
-4. Edit the weekly broadcast schedule in `src/app/live/page.tsx`.
+Until real media is added, every slot shows a hand-painted Mithila illustration.
 
-Players use a click-to-load facade, so nothing loads from YouTube until a visitor presses play.
+- **Journey steps** — put files in `public/journey/` and set `photo` (e.g. `"/journey/farming.jpg"`) and either
+  `video` (a short local clip, e.g. `"/journey/farming.mp4"`) or `youtubeId` for each step in `src/lib/content.ts`.
+  When a video is set, a *Photo / Watch video* toggle appears.
+- **Product** — put files in `public/product/` and set `product.images.front / back / closeup`.
 
-### Enquiries
+### Social media
 
-The bulk quote form and snack waitlist post to `/api/enquiry`. Set `ENQUIRY_WEBHOOK_URL` to forward submissions to Zapier, Make, Slack, Google Sheets and similar. Without it, submissions are only logged on the server.
+Social links in `src/lib/site.ts` are empty for now and show as "coming soon" in the footer. Paste the profile URLs once the accounts exist.
+
+### Contact form
+
+Submissions go to `/api/enquiry`. Set `ENQUIRY_WEBHOOK_URL` to forward them (Zapier, Make, Slack, Google Sheets…).
+Without it they are only logged on the server.
+
+### Optional: live stream
+
+Set `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` to show a "Watch live from the farms" player at the end of the journey page.
 
 ## Scripts
 

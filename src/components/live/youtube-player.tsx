@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import clsx from "clsx";
 import { embedUrl } from "@/lib/youtube-embed";
-import { LeafPad, Lotus, Pearl } from "../art";
+import { Scene } from "../mithila/scenes";
 
 type Props = {
   videoId?: string | null;
@@ -29,8 +29,8 @@ export function YouTubePlayer({ videoId, channelId, title, live, className, stag
   return (
     <div
       className={clsx(
-        "relative aspect-video w-full overflow-hidden bg-pond-deep",
-        stage ? "rounded-[2rem] border-[3px] border-ink" : "rounded-3xl",
+        "relative aspect-video w-full overflow-hidden bg-kohl",
+        stage ? "rounded-[2rem] border-[3px] border-kohl" : "rounded-3xl",
         className,
       )}
     >
@@ -59,15 +59,9 @@ export function YouTubePlayer({ videoId, channelId, title, live, className, stag
               className="absolute inset-0 size-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
             />
           ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,#2f5a3f,#0d1c13_80%)]">
-              <LeafPad className="absolute -top-[20%] -left-[6%] w-[45%] rotate-12 opacity-80" />
-              <LeafPad className="absolute -right-[8%] -bottom-[30%] w-[50%] -rotate-45 opacity-70" color="#5d8a55" />
-              <Lotus className="absolute top-[12%] right-[22%] w-[18%] opacity-90" color="#8e4fa0" accent="#c58bd4" />
-              <Pearl seed={5} className="animate-float absolute top-[30%] left-[30%] w-[9%]" />
-              <Pearl seed={8} className="animate-float-slow absolute top-[22%] left-[46%] w-[6%]" />
-            </div>
+            <Scene name="farming" className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid slice" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-kohl/85 via-kohl/20 to-transparent" />
           {src && (
             <span
               className={clsx(
@@ -87,7 +81,7 @@ export function YouTubePlayer({ videoId, channelId, title, live, className, stag
                 </span>
               )}
               <p className={clsx("font-display font-semibold text-pearl", stage ? "text-2xl sm:text-3xl" : "text-xl")}>{title}</p>
-              {!src && <p className="mt-1 text-sm text-cream/60">{emptyNote}</p>}
+              {!src && <p className="mt-1 text-sm text-paper/70">{emptyNote}</p>}
             </div>
           </div>
         </button>
